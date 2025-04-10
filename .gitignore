@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+#Folder
+copilot-chat/
+FileContentIndex/
+/SimpleRPG/.vs/SimpleRPG/v17

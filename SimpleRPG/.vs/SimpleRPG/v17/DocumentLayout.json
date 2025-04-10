@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{F5ED5D17-0BEA-4BF8-91C7-CFEA48A278A6}|SimpleRPG\\SimpleRPG.vcxproj|D:\\CppLearning\\CppLearning\\SimpleRPG\\SimpleRPG\\SimpleRPG.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F5ED5D17-0BEA-4BF8-91C7-CFEA48A278A6}|SimpleRPG\\SimpleRPG.vcxproj|solutionrelative:SimpleRPG\\SimpleRPG.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5ED5D17-0BEA-4BF8-91C7-CFEA48A278A6}|SimpleRPG\\SimpleRPG.vcxproj|D:\\CppLearning\\CppLearning\\SimpleRPG\\SimpleRPG\\SimpleRPG.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F5ED5D17-0BEA-4BF8-91C7-CFEA48A278A6}|SimpleRPG\\SimpleRPG.vcxproj|solutionrelative:SimpleRPG\\SimpleRPG.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SimpleRPG.h",
+              "DocumentMoniker": "D:\\CppLearning\\CppLearning\\SimpleRPG\\SimpleRPG\\SimpleRPG.h",
+              "RelativeDocumentMoniker": "SimpleRPG\\SimpleRPG.h",
+              "ToolTip": "D:\\CppLearning\\CppLearning\\SimpleRPG\\SimpleRPG\\SimpleRPG.h",
+              "RelativeToolTip": "SimpleRPG\\SimpleRPG.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-10T13:15:55.396Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +41,7 @@
               "RelativeDocumentMoniker": "SimpleRPG\\SimpleRPG.cpp",
               "ToolTip": "D:\\CppLearning\\CppLearning\\SimpleRPG\\SimpleRPG\\SimpleRPG.cpp",
               "RelativeToolTip": "SimpleRPG\\SimpleRPG.cpp",
-              "ViewState": "AgIAACcBAAAAAAAAAAAAAD4BAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAABUCAAAAAAAAAAD4vzgCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-10T03:26:11.233Z",
               "EditorCaption": ""

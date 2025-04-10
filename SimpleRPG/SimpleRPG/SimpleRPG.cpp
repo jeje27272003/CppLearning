@@ -11,6 +11,8 @@ int InputOption;
 string InputString;
 char InputChar;
 
+
+
 // 清除畫面功能
 
 void ClearScreen() {
@@ -32,7 +34,7 @@ enum Jobclass { // 玩家職業定義
 };
 
 
-struct Parameters { // 角色數值
+struct PlayerParameters { // 角色數值
     int Maxhealth;
     int attackPower;
     int magicPower;
@@ -42,48 +44,42 @@ struct Parameters { // 角色數值
 };
 
 struct Player { //玩家結構
-    string name;
-    Jobclass job;
-    Parameters stats;
+    string name = "";
+    Jobclass job = Warrior;
+    PlayerParameters stats = { 0, 0, 0, 0, 0, 0 };
 };
 
+Player player; // 玩家變數
+
 Player createWarrior() { // 職業=戰士
-    Player P;
-    P.name = "戰士";
-    P.job = Warrior;
-    P.stats = { 600, 25, 10, 15, 10 }; //Hp, Atk, Mag, Def, Spd
-    P.stats.health = P.stats.Maxhealth; // 初始化血量
-    return P;
+    player.name = "戰士";
+    player.job = Warrior;
+    player.stats = { 600, 25, 10, 15, 10 }; //Hp, Atk, Mag, Def, Spd
+    player.stats.health = player.stats.Maxhealth; // 初始化血量
+    return player;
 }
 
 Player createPaladin() { // 職業=聖騎士
-    Player P;
-    P.name = "聖騎士";
-    P.job = Paladin;
-    P.stats = { 750, 15, 20, 20, 10 }; //MaxHp, Atk, Mag, Def, Spd
-    P.stats.health = P.stats.Maxhealth; // 初始化血量
-    return P;
+    player.name = "聖騎士";
+    player.job = Paladin;
+    player.stats = { 750, 15, 20, 20, 10 }; //MaxHp, Atk, Mag, Def, Spd
+    player.stats.health = player.stats.Maxhealth; // 初始化血量
+    return player;
 }
 
 Player createArcher() { // 職業=弓箭手
-    Player P;
-    P.name = "弓箭手";
-    P.job = Archer;
-    P.stats = { 500, 30, 15, 5, 15 }; //MaxHp, Atk, Mag, Def, Spd
-    P.stats.health = P.stats.Maxhealth; // 初始化血量
-    return P;
+    player.name = "弓箭手";
+    player.job = Archer;
+    player.stats = { 500, 30, 15, 5, 15 }; //MaxHp, Atk, Mag, Def, Spd
+    player.stats.health = player.stats.Maxhealth; // 初始化血量
+    return player;
 }
+
 
 
 //////////////////////////////////
 /////////////敵人資料//////////////
 //////////////////////////////////
-
-struct Enemy {
-    string name;
-    EnemyType type;
-    Parameters stats;
-};
 
 enum EnemyType { // 敵人種類定義
     Goblin,
@@ -91,28 +87,46 @@ enum EnemyType { // 敵人種類定義
     Dragon
 };
 
+struct EnemyParameters { // 角色數值
+    int Maxhealth;
+    int attackPower;
+    int defensePower;
+    int speed;
+    int health;
+};
+
+struct Enemy {
+    string name = "";
+    EnemyType type = Goblin;
+    EnemyParameters stats = {0, 0, 0, 0, 0};
+};
+
+
+
+Enemy enemy; // 敵人變數
+
 Enemy createGoblin() { // 敵人=哥布林
-    Enemy E;
-    E.name = "哥布林";
-    E.type = Goblin;
-    E.stats = { 150, 10, 5, 10 }; //Hp, Atk, Def, Spd
-    return E;
+    enemy.name = "哥布林";
+    enemy.type = Goblin;
+    enemy.stats = { 150, 10, 5, 10, 150 }; //Hp, Atk, Def, Spd
+    enemy.stats.health = enemy.stats.Maxhealth; // 初始化血量
+    return enemy;
 }
 
 Enemy createSlime() { // 敵人=史萊姆
-    Enemy E;
-    E.name = "史萊姆";
-    E.type = Slime;
-    E.stats = { 200, 5, 8, 8 }; //Hp, Atk, Def, Spd
-    return E;
+    enemy.name = "史萊姆";
+    enemy.type = Slime;
+    enemy.stats = { 200, 5, 8, 8, 200 }; //Hp, Atk, Def, Spd
+    enemy.stats.health = enemy.stats.Maxhealth; // 初始化血量
+    return enemy;
 }
 
 Enemy createDragon() { // 敵人=龍
-    Enemy E;
-    E.name = "龍";
-    E.type = Dragon;
-    E.stats = { 1000, 20, 20, 12 }; //Hp, Atk, Def, Spd
-    return E;
+    enemy.name = "龍";
+    enemy.type = Dragon;
+    enemy.stats = { 1000, 20, 20, 12, 1000 }; //Hp, Atk, Def, Spd
+    enemy.stats.health = enemy.stats.Maxhealth; // 初始化血量
+    return enemy;
 }
 
 
@@ -128,72 +142,80 @@ void displayMenu() { // 主選單
     cout << "2. 載入遊戲" << endl;
     cout << "3. 退出" << endl;
     cout << "請輸入選項: ";
+	InputOption = 0; // 初始化選項
     cin >> InputOption;
 }
 
 void HandleMenuOption() { // 處理選單選項
-    switch (InputOption)
+    while (true)
     {
-    case 1:
-        StartGame;
-        break;
+        switch (InputOption)
+        {
+        case 1:
+            cout << "你選擇了開始新遊戲" << endl;
+            return;
 
-    case 2:
-        cout << "存檔功能尚未實裝:P" << endl;
-        break;
+        case 2:
+            cout << "存檔功能尚未實裝:P" << endl;
+            break;
 
-    case 3:
-        cout << "再見!" << endl;
-        system("pause");
-        return 0;
-        break;
+        case 3:
+            cout << "再見!" << endl;
+            exit(0); // 使用 exit(0) 來結束並關閉程式
+            break;
 
-    default:
-        cout << "無效選項，請再試一次" << endl;
-        break;
+        default:
+            cout << "無效選項，請再試一次" << endl;
+            displayMenu();
+            break;
+        }
     }
+  
 }
 
 void NewGameName() { // 新遊戲名稱輸入
     cout << "新的遊戲開始" << endl;
     cout << "請輸入你的名字:" << endl;
+    //清空名字
+	player.name = "";
     cin >> InputString;
-    Player.name = InputString;
-    cout << "你的名字是" << Player.name << "!" << endl;
+    player.name = InputString;
+    cout << "你的名字是" << player.name << "!" << endl;
 }
 
 void ChooseClass() { // 選擇職業
-    cout << "請選擇你的職業:" << endl;
-    cout << "1." << createWarrior().name << " 血量:" << createWarrior().stats.health << " 攻擊力:" << createWarrior().stats.attackPower << " 防禦力:" << createWarrior().stats.defensePower << " 速度:" << createWarrior().stats.speed << endl;
-    cout << "2." << createPaladin().name << " 血量:" << createPaladin().stats.health << " 攻擊力:" << createPaladin().stats.attackPower << " 防禦力:" << createPaladin().stats.defensePower << " 速度:" << createPaladin().stats.speed << endl;
-    cout << "3." << createArcher().name << " 血量:" << createArcher().stats.health << " 攻擊力:" << createArcher().stats.attackPower << " 防禦力:" << createArcher().stats.defensePower << " 速度:" << createArcher().stats.speed << endl;
-    cout << "請輸入你的選擇: ";
-    cin >> InputOption;
+    while (true) { // 使用迴圈確保無效選擇會重跑
+        cout << "請選擇你的職業:" << endl;
+        cout << "1." << createWarrior().name << " 血量:" << createWarrior().stats.health << " 攻擊力:" << createWarrior().stats.attackPower << " 防禦力:" << createWarrior().stats.defensePower << " 速度:" << createWarrior().stats.speed << endl;
+        cout << "2." << createPaladin().name << " 血量:" << createPaladin().stats.health << " 攻擊力:" << createPaladin().stats.attackPower << " 防禦力:" << createPaladin().stats.defensePower << " 速度:" << createPaladin().stats.speed << endl;
+        cout << "3." << createArcher().name << " 血量:" << createArcher().stats.health << " 攻擊力:" << createArcher().stats.attackPower << " 防禦力:" << createArcher().stats.defensePower << " 速度:" << createArcher().stats.speed << endl;
+        cout << "請輸入你的選擇: ";
+        cin >> InputOption;
 
-    switch (InputOption) {
-    case 1:
-        Player P = createWarrior();
-        break;
-    case 2:
-        Player P = createPaladin();
-        break;
-    case 3:
-        Player P = createArcher();
-        break;
-    default:
-        cout << "無效選擇，請再試一次。" << endl;
-        ChooseClass();
-        break;
+        switch (InputOption) {
+        case 1:
+            player = createWarrior();
+            return; // 結束函式
+        case 2:
+            player = createPaladin();
+            return; // 結束函式
+        case 3:
+            player = createArcher();
+            return; // 結束函式
+        default:
+            cout << "無效選擇，請再試一次。" << endl;
+            break; // 重新進入迴圈
+        }
     }
 }
 
-void ConfirmNameClass(bool isConfirmed) { // 確認角色名稱與職業
-    cout << "你的名字是" << Player.name << "，職業是" << Player.name << "!" << endl;
+bool ConfirmNameClass(bool isConfirmed) { // 確認角色名稱與職業
+    cout << "你的名字是" << player.name << "，職業是" << player.name << "!" << endl;
     cout << "你的角色能力值:" << endl;
-    cout << "血量:" << Player.stats.health << endl;
-    cout << "攻擊力:" << Player.stats.attackPower << endl;
-    cout << "防禦力:" << Player.stats.defensePower << endl;
-    cout << "速度:" << Player.stats.speed << endl;
+    cout << "血量:" << player.stats.health << endl;
+    cout << "攻擊力:" << player.stats.attackPower << endl;
+    cout << "防禦力:" << player.stats.defensePower << endl;
+    cout << "速度:" << player.stats.speed << endl;
     cout << "是否以這樣的設定開始遊戲? (Y/N)" << endl;
     cin >> InputChar;
     if (InputChar == 'Y' || InputChar == 'y') {
@@ -213,22 +235,22 @@ void ConfirmNameClass(bool isConfirmed) { // 確認角色名稱與職業
 ///////////////////////////////////////////
 
 void RandomDecideEnemy() { // 隨機決定敵人
-    srand(time(0)); // 設定隨機種子
+    srand(static_cast<unsigned int>(time(0))); // 設定隨機種子
     int enemyType = rand() % 3; // 隨機選擇敵人類型
     switch (enemyType) {
     case 0:
-        Enemy E = createGoblin();
+        enemy = createGoblin();
         break;
     case 1:
-        Enemy E = createSlime();
+        enemy = createSlime();
         break;
     case 2:
-        Enemy E = createDragon();
+        enemy = createDragon();
         break;
     }
 }
 
-void StartBattleMessage(Enemy enemy) { // 開始戰鬥
+void StartBattleMessage() { // 開始戰鬥
     cout << "你遇到了一隻" << enemy.name << "!" << endl;
     cout << "敵人能力值:" << endl;
     cout << "血量:" << enemy.stats.health << endl;
@@ -239,21 +261,22 @@ void StartBattleMessage(Enemy enemy) { // 開始戰鬥
 }
 
 void BattleOptions() { // 戰鬥選項
-    cout << player.namer << "的血量:" << player.stats.health << endl;
+    cout << player.name << "的血量:" << player.stats.health << endl;
     cout << enemy.name << "的血量:" << enemy.stats.health << endl;
     cout << "你的行動:" << endl;
     cout << "1. 攻擊" << endl;
     cout << "2. 恢復" << endl;
+	cout << "3. 查看狀態" << endl;
     cout << "請選擇你的行動: ";
     cin >> InputOption;
 }
 
-void DecideFirstAttack(Player player, Enemy enemy) { // 決定先攻
+bool isPlayerFirstAttack() { // 決定先攻
     // 先攻計算公式
     int playerSpeed = 0;
     int enemySpeed = 0;
-    int PlayerSpeedRecord[player.stats.speed];
-    int EnemySpeedRecord[enemy.stats.speed];
+	int* PlayerSpeedRecord = new int[player.stats.speed]; // 動態分配陣列以存儲骰子結果
+	int* EnemySpeedRecord = new int[enemy.stats.speed]; // 動態分配陣列以存儲骰子結果
     bool isPlayerFirst = false;
 
     // 骰等同於速度值的6面骰加總決定玩家最終速度值
@@ -286,15 +309,19 @@ void DecideFirstAttack(Player player, Enemy enemy) { // 決定先攻
         cout << EnemySpeedRecord[i];
         if (i < enemy.stats.speed - 1) cout << ",";
     }
-    bool isPlayerFirst = (finalPlayerSpeed >= finalEnemySpeed);
+    isPlayerFirst = (finalPlayerSpeed >= finalEnemySpeed);
     cout << (isPlayerFirst ? "玩家先攻!" : "敵人先攻!") << endl;
+	// 釋放動態分配的記憶體
+	delete[] PlayerSpeedRecord;
+	delete[] EnemySpeedRecord;
+	return isPlayerFirst;
 }
 
-void PlayerAttack(Player player, Enemy enemy) { // 戰鬥計算公式
+void PlayerAttack() { // 戰鬥計算公式
     int damageToEnemy = 0;
     int damageGuardFromPlayer = 0;
-    int PlayerDamageRecord[player.stats.attackPower];
-    int EnemyDefRecord[enemy.stats.attackPower];
+    int* PlayerDamageRecord = new int[player.stats.attackPower];
+    int* EnemyDefRecord = new int[enemy.stats.attackPower];
 
     for (int i = 0; i < player.stats.attackPower; i++) { //根據攻擊力骰N個6面骰
         damageToEnemy += rand() % 6 + 1;
@@ -309,9 +336,9 @@ void PlayerAttack(Player player, Enemy enemy) { // 戰鬥計算公式
     }
     cout << endl;
 
-    for (int i = 0; i < enemy.stats.attackPower; i++) { //根據防禦力骰N個6面骰
-        damageGuardFromPlayer += rand() % 6 + 1;
-        EnemyDefRecord[i] = rand() % 6 + 1;
+    for (int i = 0; i < enemy.stats.attackPower; i++) { //根據防禦力骰N個4面骰
+        damageGuardFromPlayer += rand() % 4 + 1;
+        EnemyDefRecord[i] = rand() % 4 + 1;
     }
     cout << enemy.name << "防禦總共是" << damageGuardFromPlayer << "!" << endl;
     cout << "防禦詳細:";
@@ -323,19 +350,27 @@ void PlayerAttack(Player player, Enemy enemy) { // 戰鬥計算公式
 
     // 計算實際傷害
     int actualDamageToEnemy = damageToEnemy - damageGuardFromPlayer;
+    if (actualDamageToEnemy <= 0)
+    {
+		actualDamageToEnemy = 0; // 確保傷害不會小於0
+    }
     cout << "對" << enemy.name << "造成" << actualDamageToEnemy << "傷害!" << endl;
 
     enemy.stats.health -= actualDamageToEnemy;
     if (enemy.stats.health < 0) enemy.stats.health = 0; // 確保生命值不會小於0
     cout << "敵人剩餘生命值: " << enemy.stats.health << "!" << endl;
 
+	// 釋放動態分配的記憶體
+	delete[] PlayerDamageRecord;
+	delete[] EnemyDefRecord;
+
 }
 
-void EnemyAttack(Player player, Enemy enemy) { // 敵人攻擊
+void EnemyAttack() { // 敵人攻擊
     int damageToPlayer = 0;
     int damageGuardFromEnemy = 0;
-    int PlayerDamageRecord[player.stats.attackPower];
-    int EnemyDefRecord[enemy.stats.attackPower];
+    int* PlayerDamageRecord = new int[player.stats.attackPower];
+    int* EnemyDefRecord = new int[enemy.stats.attackPower];
 
     for (int i = 0; i < enemy.stats.attackPower; i++) { //根據攻擊力骰N個6面骰
         damageToPlayer += rand() % 6 + 1;
@@ -349,9 +384,9 @@ void EnemyAttack(Player player, Enemy enemy) { // 敵人攻擊
     }
     cout << endl;
 
-    for (int i = 0; i < player.stats.attackPower; i++) { //根據防禦力骰N個6面骰
-        damageGuardFromEnemy += rand() % 6 + 1;
-        PlayerDamageRecord[i] = rand() % 6 + 1;
+    for (int i = 0; i < player.stats.attackPower; i++) { //根據防禦力骰N個4面骰
+        damageGuardFromEnemy += rand() % 4 + 1;
+        PlayerDamageRecord[i] = rand() % 4 + 1;
     }
     cout << "你的防禦總共是" << damageGuardFromEnemy << "!" << endl;
     cout << "防禦詳細:";
@@ -364,17 +399,25 @@ void EnemyAttack(Player player, Enemy enemy) { // 敵人攻擊
 
     // 計算實際傷害
     int actualDamageToPlayer = damageToPlayer - damageGuardFromEnemy;
+    if (actualDamageToPlayer <= 0)
+    {
+		actualDamageToPlayer = 0; // 確保傷害不會小於0
+    }
     cout << "對" << player.name << "造成" << actualDamageToPlayer << "傷害!" << endl;
 
 
     player.stats.health -= actualDamageToPlayer;
     cout << "玩家剩餘生命值: " << player.stats.health << "!" << endl;
     if (player.stats.health < 0) player.stats.health = 0; // 確保生命值不會小於0
-}
 
-void PlayerHeal(Player player) { // 玩家恢復
+	// 釋放動態分配的記憶體
+	delete[] PlayerDamageRecord;
+	delete[] EnemyDefRecord;
+	}
+
+void PlayerHeal() { // 玩家恢復
     int healAmount = 0;
-    int HealRecord[player.stats.magicPower];
+    int* HealRecord = new int[player.stats.magicPower];
     for (int i = 0; i < player.stats.magicPower; i++) { //根據魔法力骰N個6面骰
         healAmount += rand() % 6 + 1;
         HealRecord[i] = rand() % 6 + 1;
@@ -390,10 +433,10 @@ void PlayerHeal(Player player) { // 玩家恢復
     player.stats.health += healAmount;
     cout << "玩家剩餘生命值: " << player.stats.health << "!" << endl;
 
-    if (player.stats.health > 1000) player.stats.health = 1000; // 確保生命值不會超過上限
+    if (player.stats.health > player.stats.Maxhealth) player.stats.health = player.stats.Maxhealth; // 確保生命值不會超過上限
 }
 
-void EnemyHpCheck(Enemy enemy) { // 檢查敵人血量
+void EnemyHpCheck() { // 檢查敵人血量
     bool isEnemyDefeated = false;
     if (enemy.stats.health <= 0) {
         isEnemyDefeated = true;
@@ -405,7 +448,7 @@ void EnemyHpCheck(Enemy enemy) { // 檢查敵人血量
 
 }
 
-void PlayerHpCheck(Player player) { // 檢查玩家血量
+void PlayerHpCheck() { // 檢查玩家血量
     bool isPlayerDefeated = false;
     if (player.stats.health <= 0) {
         isPlayerDefeated = true;
@@ -434,48 +477,47 @@ int main() {
     ChooseClass();
     ConfirmNameClass(true);
     RandomDecideEnemy();
-    StartBattleMessage(enemy);
-    DecideFirstAttack(player, enemy);
+    StartBattleMessage();
     cout << "戰鬥開始！按任意鍵繼續..." << endl;
     system("pause");
+    ClearScreen();
 
     while (true) { // 進入戰鬥迴圈
-        ClearScreen();
         BattleOptions();
         if (InputOption == 1) {
             // 決定先攻
-            DecideFirstAttack(player, enemy);
+            isPlayerFirstAttack();
             // 玩家先攻或敵人先攻
-            if (isPlayerFirst) { // 玩家先攻
-                PlayerAttack(player, enemy);
-                EnemyHpCheck(enemy);
+            if (isPlayerFirstAttack()) { // 如果玩家先攻
+                PlayerAttack();
+                EnemyHpCheck();
                 if (enemy.stats.health <= 0) {
                     victoryMessage();
                     break;
                 }
-                EnemyAttack(player, enemy);
-                PlayerHpCheck(player);
+                EnemyAttack();
+                PlayerHpCheck();
                 if (player.stats.health <= 0) {
                     cout << "你死了，遊戲結束!" << endl;
                     break;
                 }
             }
             else { // 敵人先攻
-                EnemyAttack(player, enemy);
-                PlayerHpCheck(player);
+                EnemyAttack();
+                PlayerHpCheck();
                 if (player.stats.health <= 0) {
                     cout << "你死了，遊戲結束!" << endl;
                     break;
                 }
 
-                PlayerAttack(player, enemy);
-                EnemyHpCheck(enemy);
+                PlayerAttack();
+                EnemyHpCheck();
                 if (enemy.stats.health <= 0) {
                     victoryMessage();
                     break;
                 }
-                EnemyAttack(player, enemy);
-                PlayerHpCheck(player);
+                EnemyAttack();
+                PlayerHpCheck();
                 if (player.stats.health <= 0) {
                     cout << "你死了，遊戲結束!" << endl;
                     break;
@@ -484,33 +526,46 @@ int main() {
         }
         else if (InputOption == 2) {
             // 決定先攻
-            DecideFirstAttack(player, enemy);
+            isPlayerFirstAttack();
             // 玩家先攻或敵人先攻
-            if (isPlayerFirst) { // 玩家先攻
-                PlayerHeal(player);
-                EnemyAttack(player, enemy);
+            if (isPlayerFirstAttack()) { // 玩家先攻
+                PlayerHeal();
+                EnemyAttack();
                 if (player.stats.health <= 0) {
                     cout << "你死了，遊戲結束!" << endl;
                     break;
                 }
             }
-            else {
-                EnemyAttack(player, enemy);
-                PlayerHpCheck(player);
+            else { // 敵人先攻
+                EnemyAttack();
+                PlayerHpCheck();
                 if (player.stats.health <= 0) {
                     cout << "你死了，遊戲結束!" << endl;
                     break;
                 }
-                PlayerHeal(player);
+                PlayerHeal();
             }
-
+        }
+        else if (InputOption == 3) {
+            //查看狀態
+            cout << endl;
+            cout << "角色名稱:" << player.name << endl;
+            cout << "職業:" << player.name << endl;
+            cout << "血量:" << player.stats.health << endl;
+            cout << "攻擊力:" << player.stats.attackPower << endl;
+            cout << "防禦力:" << player.stats.defensePower << endl;
+            cout << "速度:" << player.stats.speed << endl;
+            cout << endl;
+            cout << "敵人名稱:" << enemy.name << endl;
+            cout << "血量:" << enemy.stats.health << endl;
+            cout << "攻擊力:" << enemy.stats.attackPower << endl;
+            cout << "防禦力:" << enemy.stats.defensePower << endl;
+            cout << "速度:" << enemy.stats.speed << endl;
         }
         else {
             cout << "無效選項，請再試一次" << endl;
         }
     }
 
-    return 0;
-
-}
+return 0;
 }
