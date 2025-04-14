@@ -6,7 +6,7 @@
 #include "Enemy.h"
 
 extern int InputOption;
-extern string InputString;
+extern std::string InputString;
 extern char InputChar;
-extern Player player; // 玩家變數
-extern Enemy enemy; // 敵人變數
+
+

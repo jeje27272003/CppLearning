@@ -26,3 +26,5 @@ struct Enemy {
     EnemyType type = Goblin;
     EnemyParameters stats = { 0, 0, 0, 0, 0 };
 };
+
+extern Enemy enemy; // ¼Ä¤HÅÜ¼Æ

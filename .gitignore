@@ -32,8 +32,6 @@
 *.app
 
 #Folder
-.vs/
-copilot-chat/
-FileContentIndex/
-v17/
-CopilotIndices/
+.vs
+copilot-chat
+/SimpleRPG/.vs

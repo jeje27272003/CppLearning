@@ -28,3 +28,4 @@ struct Player { //玩家結構
     PlayerParameters stats = { 0, 0, 0, 0, 0, 0 };
 };
 
+extern Player player; // 玩家變數
