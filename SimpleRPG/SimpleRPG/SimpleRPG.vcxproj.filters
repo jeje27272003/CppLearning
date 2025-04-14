@@ -18,10 +18,28 @@
     <ClCompile Include="SimpleRPG.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>資源檔</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalVariable.cpp">
+      <Filter>資源檔</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleRPG.h">
       <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalVariable.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
