@@ -1,7 +1,4 @@
 #include "GlobalVariable.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "Common.h"
 
 namespace GlobalVariable {
 	int InputOption = 0;

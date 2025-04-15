@@ -127,7 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BattleSystem.cpp" />
+    <ClCompile Include="BattleSystem.h" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GlobalVariable.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SystemFlow.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SimpleRPG.cpp" />
   </ItemGroup>
@@ -135,8 +140,10 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GlobalVariable.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SimpleRPG.h" />
+    <ClInclude Include="SystemFlow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

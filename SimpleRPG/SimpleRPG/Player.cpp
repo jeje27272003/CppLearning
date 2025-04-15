@@ -1,6 +1,5 @@
-#include "Common.h"
 #include "Player.h"
-#include "GlobalVariable.h"
+
 
 Player createWarrior() { // 職業=戰士
     player.name = "戰士";
@@ -26,7 +25,7 @@ Player createArcher() { // 職業=弓箭手
     return player;
 }
 
-void NewGameName() { // 新遊戲名稱輸入
+void NewGameName(void) { // 新遊戲名稱輸入
     cout << "新的遊戲開始" << endl;
     cout << "請輸入你的名字:" << endl;
     //清空名字
@@ -36,7 +35,7 @@ void NewGameName() { // 新遊戲名稱輸入
     cout << "你的名字是" << player.name << "!" << endl;
 }
 
-void ChooseClass() { // 選擇職業
+void ChooseClass(void) { // 選擇職業
     while (true) { // 使用迴圈確保無效選擇會重跑
         cout << "請選擇你的職業:" << endl;
         cout << "1." << createWarrior().name << " 血量:" << createWarrior().stats.health << " 攻擊力:" << createWarrior().stats.attackPower << " 防禦力:" << createWarrior().stats.defensePower << " 速度:" << createWarrior().stats.speed << endl;

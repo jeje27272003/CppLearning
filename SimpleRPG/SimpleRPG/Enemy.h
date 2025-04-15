@@ -28,3 +28,8 @@ struct Enemy {
 };
 
 extern Enemy enemy; // 敵人變數
+
+//宣告Enemy.cpp函式
+Enemy createGoblin(); // 敵人=哥布林
+Enemy createSlime(); // 敵人=史萊姆
+Enemy createDragon(); // 敵人=龍
