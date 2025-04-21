@@ -29,3 +29,10 @@ struct Player { //玩家結構
 };
 
 extern Player player; // 玩家變數
+
+void NewGameName(void); // 新遊戲名稱輸入
+void ChooseClass(void);// 選擇職業
+bool ConfirmNameClass(bool isConfirmed); // 確認角色名稱與職業
+Player createWarrior(); // 職業=戰士
+Player createPaladin(); // 職業=聖騎士
+Player createArcher(); // 職業=弓箭手

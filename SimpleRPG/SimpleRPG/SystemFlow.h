@@ -7,7 +7,6 @@
 
 
 // 所有SystemFlow.cpp用到的函式
-void ConfirmNameClass(bool isNewGame); // 確認名稱和職業
 void ClearScreen(); // 清除畫面
 void displayMenu(); // 顯示主選單
 void HandleMenuOption(); // 處理選單選項
