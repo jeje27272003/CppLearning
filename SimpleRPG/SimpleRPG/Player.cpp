@@ -1,4 +1,5 @@
 #include "Player.h"
+using namespace GlobalVariable;
 
 
 Player createWarrior() { // Â¾·~=¾Ô¤h

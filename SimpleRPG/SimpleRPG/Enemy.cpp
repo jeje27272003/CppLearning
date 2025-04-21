@@ -1,4 +1,5 @@
 #include "Enemy.h"
+using namespace GlobalVariable;
 
 Enemy createGoblin() { // ¼Ä¤H=­ô¥¬ªL
     enemy.name = "­ô¥¬ªL";

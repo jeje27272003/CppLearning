@@ -1,4 +1,5 @@
 #include "SystemFlow.h"
+using namespace GlobalVariable;
 
 // 清除畫面功能
 

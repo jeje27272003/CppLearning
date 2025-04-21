@@ -28,8 +28,6 @@ struct Player { //玩家結構
     PlayerParameters stats = { 0, 0, 0, 0, 0, 0 };
 };
 
-extern Player player; // 玩家變數
-
 void NewGameName(void); // 新遊戲名稱輸入
 void ChooseClass(void);// 選擇職業
 bool ConfirmNameClass(bool isConfirmed); // 確認角色名稱與職業

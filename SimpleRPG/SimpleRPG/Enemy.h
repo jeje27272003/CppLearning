@@ -27,8 +27,6 @@ struct Enemy {
     EnemyParameters stats = { 0, 0, 0, 0, 0 };
 };
 
-extern Enemy enemy; // 敵人變數
-
 //宣告Enemy.cpp函式
 Enemy createGoblin(); // 敵人=哥布林
 Enemy createSlime(); // 敵人=史萊姆
