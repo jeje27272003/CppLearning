@@ -1,8 +1,14 @@
 #include "Player.h"
 using namespace GlobalVariable;
+using namespace std;
 
 
-Player createWarrior() { // 職業=戰士
+namespace Player
+{
+    PlayerData player; // 定義全域變數
+	// 玩家變數
+
+PlayerData createWarrior() { // 職業=戰士
     player.name = "戰士";
     player.job = Warrior;
     player.stats = { 600, 25, 10, 15, 10 }; //Hp, Atk, Mag, Def, Spd
@@ -10,7 +16,7 @@ Player createWarrior() { // 職業=戰士
     return player;
 }
 
-Player createPaladin() { // 職業=聖騎士
+PlayerData createPaladin() { // 職業=聖騎士
     player.name = "聖騎士";
     player.job = Paladin;
     player.stats = { 750, 15, 20, 20, 10 }; //MaxHp, Atk, Mag, Def, Spd
@@ -18,12 +24,12 @@ Player createPaladin() { // 職業=聖騎士
     return player;
 }
 
-Player createArcher() { // 職業=弓箭手
+PlayerData createArcher() { // 職業=弓箭手
     player.name = "弓箭手";
     player.job = Archer;
     player.stats = { 500, 30, 15, 5, 15 }; //MaxHp, Atk, Mag, Def, Spd
     player.stats.health = player.stats.Maxhealth; // 初始化血量
-    return player;
+	return player;
 }
 
 void NewGameName(void) { // 新遊戲名稱輸入
@@ -80,5 +86,6 @@ bool ConfirmNameClass(bool isConfirmed) { // 確認角色名稱與職業
         system("pause");
         return false;
     }
-}
+}// ConfirmNameClass結束
 
+}// namespace Player結束

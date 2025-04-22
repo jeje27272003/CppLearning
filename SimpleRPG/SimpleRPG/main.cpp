@@ -1,5 +1,8 @@
 #include "Main.h"
 using namespace GlobalVariable;
+using namespace Player;
+using namespace Enemy;
+using namespace std;
 
 ////////////////////////////////////////////////
 ///////////////¥Dµ{¦¡////////////////////////////

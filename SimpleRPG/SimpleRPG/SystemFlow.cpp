@@ -1,5 +1,8 @@
 #include "SystemFlow.h"
 using namespace GlobalVariable;
+using namespace std;
+using namespace Player;
+using namespace Enemy;
 
 // 清除畫面功能
 

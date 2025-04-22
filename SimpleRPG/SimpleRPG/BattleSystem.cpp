@@ -1,5 +1,8 @@
 #include "BattleSystem.h"
 using namespace GlobalVariable;
+using namespace std;
+using namespace Player;
+using namespace Enemy;
 
 ///////////////////////////////////////////
 //////////////¾Ô°«¬yµ{//////////////////////
