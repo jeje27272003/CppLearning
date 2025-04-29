@@ -6,7 +6,7 @@
 
 namespace GlobalVariable {
 	// 全域變數
-	extern int InputOption; // 使用者輸入選項
-	extern std::string InputString; // 使用者輸入字串
-	extern char InputChar; // 使用者輸入字元
+	inline int InputOption = 0; // 使用者輸入選項
+	inline std::string InputString; // 使用者輸入字串
+	inline char InputChar; // 使用者輸入字元
 }

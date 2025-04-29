@@ -8,9 +8,9 @@ using namespace Enemy;
 //////////////戰鬥流程//////////////////////
 ///////////////////////////////////////////
 
-void RandomDecideEnemy() { // 隨機決定敵人
-    srand(static_cast<unsigned int>(time(0))); // 設定隨機種子
-    int enemyType = rand() % 3; // 隨機選擇敵人類型
+void RandomDecideEnemy(std::mt19937& rng) { // 隨機決定敵人
+	int enemyType = rollDice(1, 3, rng).rolls[0];
+
     switch (enemyType) {
     case 0:
         enemy = createGoblin();
@@ -25,51 +25,20 @@ void RandomDecideEnemy() { // 隨機決定敵人
 }
 
 
-bool isPlayerFirstAttack() { // 決定先攻
-    // 先攻計算公式
-    int playerSpeed = 0;
-    int enemySpeed = 0;
-    int* PlayerSpeedRecord = new int[player.stats.speed]; // 動態分配陣列以存儲骰子結果
-    int* EnemySpeedRecord = new int[enemy.stats.speed]; // 動態分配陣列以存儲骰子結果
-    bool isPlayerFirst = false;
+FirstAttackResult isPlayerFirstAttack(std::mt19937& rng) { // 決定先攻
+
+    FirstAttackResult result;
 
     // 骰等同於速度值的6面骰加總決定玩家最終速度值
-    for (int i = 0; i < player.stats.speed; i++) {
-        PlayerSpeedRecord[i] = rand() % 6 + 1;
+    auto playerFinalSpeed = rollDice(Player::player.stats.speed, 6, rng);
+	auto enemyFinalSpeed = rollDice(Enemy::enemy.stats.speed, 6, rng);
+	result.playerDices = playerFinalSpeed.rolls;
+	result.enemyDices = enemyFinalSpeed.rolls;
+	result.playerTotalSpeed = playerFinalSpeed.total();
+	result.enemyTotalSpeed = enemyFinalSpeed.total();
+	result.isPlayerFirst = (result.playerTotalSpeed >= result.enemyTotalSpeed); // 玩家速度大於等於敵人速度則玩家先攻
+	return result;
     }
-    int finalPlayerSpeed = 0;
-    for (int i = 0; i < player.stats.speed; i++) {
-        finalPlayerSpeed += PlayerSpeedRecord[i];
-    }
-    cout << "玩家速度為: " << finalPlayerSpeed << endl;
-    cout << "詳細:";
-    for (int i = 0; i < player.stats.speed; i++) {
-        cout << PlayerSpeedRecord[i];
-        if (i < player.stats.speed - 1) cout << ",";
-    }
-    cout << endl;
-
-    // 骰等同於速度值的6面骰加總決定敵人最終速度值
-    for (int i = 0; i < enemy.stats.speed; i++) {
-        EnemySpeedRecord[i] = rand() % 6 + 1;
-    }
-    int finalEnemySpeed = 0;
-    for (int i = 0; i < enemy.stats.speed; i++) {
-        finalEnemySpeed += EnemySpeedRecord[i];
-    }
-    cout << "敵人速度為: " << finalEnemySpeed << endl;
-    cout << "詳細:";
-    for (int i = 0; i < enemy.stats.speed; i++) {
-        cout << EnemySpeedRecord[i];
-        if (i < enemy.stats.speed - 1) cout << ",";
-    }
-    isPlayerFirst = (finalPlayerSpeed >= finalEnemySpeed);
-    cout << (isPlayerFirst ? "玩家先攻!" : "敵人先攻!") << endl;
-    // 釋放動態分配的記憶體
-    delete[] PlayerSpeedRecord;
-    delete[] EnemySpeedRecord;
-    return isPlayerFirst;
-}
 
 void PlayerAttack() { // 戰鬥計算公式
     int damageToEnemy = 0;
