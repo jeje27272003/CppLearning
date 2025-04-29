@@ -1,7 +1,6 @@
 #pragma once
 #include "Common.h"
 #include "GlobalVariable.h"
-using namespace std;
 
 //////////////////////////////////
 /////////////敵人資料//////////////
@@ -25,7 +24,7 @@ struct EnemyParameters { // 角色數值
 };
 
 struct EnemyData {
-    string name = "";
+    std::string name = "";
     EnemyType type = Goblin;
     EnemyParameters stats = { 0, 0, 0, 0, 0 };
 };

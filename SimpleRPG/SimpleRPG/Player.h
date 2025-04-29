@@ -1,7 +1,6 @@
 #pragma once
 #include "Common.h"
 #include "GlobalVariable.h"
-using namespace std;
 
 //////////////////////////////////
 /////////////玩家資料//////////////
@@ -25,7 +24,7 @@ namespace Player {
     };
 
     struct PlayerData { //玩家結構
-        string name = "";
+        std::string name = "";
         Jobclass job = Warrior;
         PlayerParameters stats = { 0, 0, 0, 0, 0, 0 };
     };
